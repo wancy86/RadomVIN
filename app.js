@@ -7,6 +7,17 @@ app.listen("3000");
 console.log('listen on 3000');
 
 
+
+app.get("/", function(req, res) {
+    var host = 'http://randomvin.com/getvin.php?type=real';
+    request(host, function(error, response, data) {
+        if (!error && response.statusCode == 200) {
+            res.send(data);
+        } //end of status 200
+    }); //end request
+});
+
+
 app.get("/:num", function(req, res) {
     var number = parseInt(req.params.num) || 1;
     var host = 'http://randomvin.com/getvin.php?type=real';
@@ -36,3 +47,4 @@ app.get("/:num", function(req, res) {
     }
 
 });
+
